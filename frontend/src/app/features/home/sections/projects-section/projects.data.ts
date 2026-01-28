@@ -5,9 +5,13 @@ export const PROJECTS: Project[] = [
     id: 'workflow-elsa',
     title: 'Workflow Platform (.NET) · Elsa',
     description:
-      'Extensión de motor de workflows: diseño de actividades, APIs y mejoras de DX para flujos mantenibles.',
+      'Extension of a workflow engine: activity design, APIs, and DX improvements for maintainable and scalable workflows.',
     tags: ['.NET', 'APIs', 'Clean Architecture'],
-    highlights: ['Extensible y modular', 'Validaciones y errores consistentes', 'Listo para escalar'],
+    highlights: [
+      'Extensible and modular',
+      'Consistent validation and error handling',
+      'Built to scale',
+    ],
     links: [{ label: 'Case study', url: '#' }],
     featured: true,
   },
@@ -15,27 +19,27 @@ export const PROJECTS: Project[] = [
     id: 'news-publisher',
     title: 'News Publisher Platform',
     description:
-      'Módulos para publicación y administración diaria de contenidos con UX enfocada en velocidad editorial.',
+      'Modules for daily content publishing and management, with UX focused on editorial speed and clarity.',
     tags: ['Angular', 'APIs', 'SQL'],
-    highlights: ['UI rápida', 'Flujos claros', 'Mantenibilidad'],
+    highlights: ['Fast UI', 'Clear workflows', 'Maintainable architecture'],
     links: [{ label: 'Case study', url: '#' }],
   },
   {
     id: 'xbrl-suite',
     title: 'XBRL Processing Suite',
     description:
-      'Carga, validación y procesamiento de reportes XBRL con almacenamiento y pipeline de procesamiento.',
+      'Ingestion, validation, and processing of XBRL reports with reliable storage and a robust processing pipeline.',
     tags: ['.NET', 'SQL', 'Clean Architecture'],
-    highlights: ['Procesamiento robusto', 'Validación', 'Persistencia confiable'],
+    highlights: ['Robust processing', 'Strong validation', 'Reliable persistence'],
     links: [{ label: 'Case study', url: '#' }],
   },
   {
     id: 'ecommerce-angular',
     title: 'E-commerce (Angular + Tailwind)',
     description:
-      'Frontend escalable con componentes reutilizables, UI moderna y base lista para crecer.',
+      'Scalable frontend built with reusable components, modern UI, and a solid foundation for future growth.',
     tags: ['Angular', 'CI/CD'],
-    highlights: ['Componentización', 'Responsive', 'Diseño consistente'],
-    links: [{ label: 'Repo', url: '#' }],
+    highlights: ['Component-driven design', 'Responsive layout', 'Consistent UI system'],
+    links: [{ label: 'Case study', url: '#' }],
   },
 ];
