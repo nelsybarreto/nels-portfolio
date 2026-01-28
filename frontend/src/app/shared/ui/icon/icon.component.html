@@ -1,0 +1,90 @@
+@switch (name) {
+
+    @case ('experience') {
+        <svg viewBox="0 0 24 24" aria-hidden="true">
+            <path d="M4 7h16v10H4z" fill="none" stroke="currentColor" stroke-width="1.5"/>
+            <path d="M8 7V5h8v2" fill="none" stroke="currentColor" stroke-width="1.5"/>
+          </svg>
+    }
+
+    @case ('stack') {
+        <svg viewBox="0 0 24 24" aria-hidden="true">
+            <path d="M12 2l9 5-9 5-9-5 9-5z" fill="none" stroke="currentColor" stroke-width="1.5"/>
+            <path d="M3 12l9 5 9-5" fill="none" stroke="currentColor" stroke-width="1.5"/>
+        </svg>
+    }
+
+    @case ('quality') {
+      <svg viewBox="0 0 24 24" aria-hidden="true">
+        <path
+          d="M12 3l7 4v5c0 5-3.5 7.5-7 9-3.5-1.5-7-4-7-9V7l7-4z"
+          fill="none"
+          stroke="currentColor"
+          stroke-width="1.5"
+        />
+      </svg>
+    }
+  
+    @case ('tools') {
+      <svg viewBox="0 0 24 24" aria-hidden="true">
+        <path
+          d="M14 7l3 3-7 7H7v-3l7-7z"
+          fill="none"
+          stroke="currentColor"
+          stroke-width="1.5"
+        />
+      </svg>
+    }
+    @case ('fullstack') {
+      <svg viewBox="0 0 24 24" fill="none" stroke="currentColor"
+            stroke-width="1.7" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">
+        <path d="M4 5h16v10H4z"/>
+        <path d="M8 19h8"/>
+        <path d="M10 15l-2 2 2 2"/>
+        <path d="M14 19l2-2-2-2"/>
+        <path d="M7 9h10"/>
+      </svg>
+    }
+  
+    @case ('architecture') {
+      <svg viewBox="0 0 24 24" fill="none" stroke="currentColor"
+            stroke-width="1.7" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">
+        <path d="M12 3h7v6h-7z"/>
+        <path d="M12 9v3"/>
+        <path d="M6 14h4v7H6z"/>
+        <path d="M14 14h4v7h-4z"/>
+        <path d="M12 12H8"/>
+        <path d="M12 12h4"/>
+      </svg>
+    }
+  
+    @case ('maintenance') {
+      <svg viewBox="0 0 24 24" fill="none" stroke="currentColor"
+            stroke-width="1.7" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">
+        <path d="M12 3a9 9 0 1 0 9 9"/>
+        <path d="M21 3l-6 6"/>
+        <path d="M8.5 14.5l2 2 5-5"/>
+      </svg>
+    }
+  
+    @case ('collaboration') {
+      <svg viewBox="0 0 24 24" fill="none" stroke="currentColor"
+            stroke-width="1.7" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">
+        <path d="M12 12a3 3 0 1 0-3-3 3 3 0 0 0 3 3z"/>
+        <path d="M5 20a7 7 0 0 1 14 0"/>
+        <path d="M6 9a2 2 0 1 1-2-2"/>
+        <path d="M18 9a2 2 0 1 0 2-2"/>
+      </svg>
+    }
+    
+    @default {
+      <svg viewBox="0 0 24 24" aria-hidden="true">
+        <circle cx="12" cy="12" r="9"
+          fill="none"
+          stroke="currentColor"
+          stroke-width="1.5"
+        />
+      </svg>
+    }
+  
+  }

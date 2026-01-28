@@ -1,0 +1,68 @@
+<section
+  id="projects"
+  class="projects"
+  appRevealCards
+  [revealSectionId]="'projects'"
+  [revealSelector]="'.project-card'"
+>
+  <div class="mx-auto max-w-6xl px-6 w-full">
+    <div class="head">
+      <div>
+        <div class="kicker">PROJECTS</div>
+        <h2 class="title">Algunos proyectos destacados</h2>
+        <p class="desc">
+          Selección de trabajos donde prioricé arquitectura, DX y UI sólida.
+        </p>
+      </div>
+
+      <a class="btn-ghost" href="#contact">Hablemos</a>
+    </div>
+
+    <div class="grid">
+      @for (p of projects; track p.id; let idx = $index) {
+        <article
+          class="project-card reveal-card group"
+          [class.featured]="p.featured"
+          [style.--i]="idx"
+        >
+          <header class="cardTop">
+            @if (p.featured){
+                <div class="badge">Featured</div>
+            }
+
+            <div class="cardTitleRow">
+              <h3 class="cardTitle">{{ p.title }}</h3>
+              <span class="cardChevron" aria-hidden="true">↗</span>
+            </div>
+
+            <p class="cardDesc">{{ p.description }}</p>
+          </header>
+
+          <div class="tags">
+            @for (t of p.tags; track t) {
+              <span class="tag">{{ t }}</span>
+            }
+          </div>
+
+          @if (p.highlights?.length) {
+            <ul class="highlights">
+              @for (h of p.highlights; track h) {
+                <li>{{ h }}</li>
+              }
+            </ul>
+          }
+
+          @if (p.links?.length) {
+            <div class="links">
+              @for (l of p.links; track l.url) {
+                <a class="link" [href]="l.url" target="_blank" rel="noreferrer">
+                  {{ l.label }}
+                </a>
+              }
+            </div>
+          }
+        </article>
+      }
+    </div>
+  </div>
+</section>

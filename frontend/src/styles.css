@@ -1,0 +1,51 @@
+@import "tailwindcss";
+
+/* Tokens del diseño (global) */
+:root{
+  --bg: #F5F0F9;
+  --ink: #1F2430;
+  --muted: rgba(31,36,48,.55);
+  --accent: #8C6CD8;
+  --stroke: rgba(140,108,216,.18);
+  --nav-h: 80px;
+}
+
+html,body{
+  overflow-x: clip;
+}
+
+html { scroll-padding-top: var(--nav-h); }
+
+
+/* Base global mínima */
+@layer base {
+  html, body { height: 100%; }
+  body { 
+    background: var(--bg); 
+    color: var(--ink); 
+    overflow-x: hidden;
+  }
+}
+
+/* Componentes reutilizables (clases “de diseño”) */
+@layer components {
+  .glass {
+    @apply bg-white/50 ring-1 ring-black/5 backdrop-blur;
+  }
+
+  .btn-primary {
+    @apply inline-flex h-12 items-center justify-center rounded-xl px-8 font-medium text-white shadow-sm transition;
+    background: var(--accent);
+  }
+
+  .btn-ghost {
+    @apply inline-flex h-12 items-center justify-center rounded-xl px-8 font-medium text-[var(--ink)]
+           ring-1 ring-black/5 bg-white/50 backdrop-blur transition hover:bg-white/65;
+  }
+
+  .chip {
+    @apply inline-flex items-center gap-2 rounded-2xl px-4 py-2 text-[0.95rem]
+           bg-white/45 border border-black/5 shadow-sm backdrop-blur;
+    color: rgba(31,36,48,.72);
+  }
+}

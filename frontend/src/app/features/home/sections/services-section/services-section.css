@@ -1,0 +1,269 @@
+@reference "tailwindcss";
+:host{ display:block; }
+
+/* section */
+.services{
+  position: relative;
+  padding-block: clamp(2.8rem, 6vh, 5.2rem);
+}
+.servicesHead{ max-width: 52rem; }
+.kicker{ @apply text-xs font-semibold tracking-[0.3em]; color: rgba(31,36,48,.45); }
+.title { @apply mt-3 text-3xl md:text-4xl font-semibold leading-tight tracking-tight; color: var(--ink); }
+.desc  { @apply mt-4 text-lg leading-relaxed; color: var(--muted); }
+
+/* grid */
+.servicesGrid{
+  margin-top: 1.75rem;
+  display: grid;
+  gap: 18px;
+}
+@media (min-width: 900px){
+  .servicesGrid{ grid-template-columns: 1fr 1fr 1fr; gap: 22px; }
+}
+
+/* perspective reveal */
+.services-perspective{ perspective: 900px; perspective-origin: center; }
+
+/* card base */
+.serviceCard{
+  overflow: hidden;
+  border-radius: 28px;
+
+  background: rgba(255,255,255,.42);
+  border: 1px solid rgba(0,0,0,.06);
+  backdrop-filter: blur(12px);
+
+  box-shadow:
+    0 26px 90px rgba(140,108,216,.14),
+    0 2px 0 rgba(255,255,255,.58) inset;
+
+  transition:
+    transform .25s ease,
+    box-shadow .25s ease,
+    border-color .25s ease,
+    background .25s ease;
+
+  transform-style: preserve-3d;
+}
+
+/* preview area (arriba) */
+.servicePreview{
+  position: relative;
+  height: 168px;
+  padding: 16px;
+  border-bottom: 1px solid rgba(0,0,0,.05);
+
+  background:
+    radial-gradient(circle at 20% 20%, rgba(140,108,216,.20), transparent 55%),
+    radial-gradient(circle at 85% 40%, rgba(140,108,216,.16), transparent 60%),
+    linear-gradient(to bottom, rgba(255,255,255,.38), rgba(255,255,255,.22));
+
+  color: rgba(140,108,216,.85);
+}
+
+/* “screenshot fake” dentro del preview */
+.previewFrame{
+  height: 100%;
+  border-radius: 18px;
+  background: rgba(255,255,255,.55);
+  border: 1px solid rgba(0,0,0,.05);
+  box-shadow: 0 14px 36px rgba(140,108,216,.14);
+  overflow: hidden;
+  position: relative;
+}
+.previewTopbar{
+  height: 18px;
+  background: rgba(31,36,48,.06);
+}
+.previewRows{
+  display:grid;
+  grid-template-columns: repeat(3, 1fr);
+  gap: 10px;
+  padding: 14px;
+  opacity: .65;
+}
+.previewRows span{
+  height: 10px;
+  border-radius: 9999px;
+  background: rgba(31,36,48,.10);
+}
+.previewCards{
+  display:grid;
+  grid-template-columns: repeat(3, 1fr);
+  gap: 10px;
+  padding: 0 14px 14px;
+  opacity: .55;
+}
+.previewCards div{
+  height: 26px;
+  border-radius: 14px;
+  background: rgba(140,108,216,.12);
+  border: 1px solid rgba(140,108,216,.14);
+}
+
+/* wave */
+.previewWave{
+  position: absolute;
+  left: 0;
+  right: 0;
+  bottom: -8px;
+  width: 100%;
+  height: 52px;
+  opacity: .85;
+  pointer-events: none;
+  filter: blur(.2px);
+}
+
+/* body */
+.serviceBody{
+  padding: 18px 20px 20px;
+}
+
+/* header: badge + title */
+.serviceHeader{
+  display:flex;
+  align-items:center;
+  gap: 12px;
+}
+.serviceBadge{
+  width: 44px;
+  height: 44px;
+  border-radius: 16px;
+  display:grid;
+  place-items:center;
+
+  background: rgba(140,108,216,.12);
+  border: 1px solid rgba(140,108,216,.22);
+  color: rgba(140,108,216,.80);
+
+  transition: transform .25s ease, background .25s ease, border-color .25s ease, color .25s ease;
+}
+.serviceIcon{ width: 22px; height: 22px; }
+
+.serviceTitle{
+  font-size: 1.25rem;
+  font-weight: 750;
+  letter-spacing: -0.02em;
+  color: rgba(31,36,48,.90);
+}
+
+/* bullets (1 línea como la imagen) */
+.serviceList{
+  margin-top: 10px;
+  display:grid;
+  gap: 10px;
+  color: rgba(31,36,48,.70);
+}
+.serviceList li{
+  position: relative;
+  padding-left: 18px;
+}
+.serviceList li::before{
+  content:"";
+  position:absolute;
+  left:0;
+  top:.55rem;
+  width: 7px;
+  height: 7px;
+  border-radius: 9999px;
+  background: rgba(140,108,216,.72);
+}
+
+/* texto */
+.serviceDesc{
+  margin-top: 10px;
+  font-size: 1.02rem;
+  line-height: 1.65;
+  color: --accent;
+}
+
+/* chips */
+.chips{ margin-top: 14px; display:flex; flex-wrap:wrap; gap: 10px; }
+.chip{
+  display:inline-flex;
+  align-items:center;
+  border-radius: 9999px;
+  padding: .36rem .72rem;
+  font-size: .86rem;
+  font-weight: 650;
+
+  background: rgba(207, 190, 247, 0.09);
+  border: 1px solid rgba(140,108,216,.16);
+  color: var(--accent);
+
+  opacity: .92;
+  transition: background .2s ease, border-color .2s ease, opacity .2s ease, transform .2s ease;
+}
+
+/* hover + icon bounce */
+@media (hover:hover){
+  .serviceCard:hover{
+    transform: translateY(-3px);
+    border-color: rgba(140,108,216,.22);
+    background: rgba(255,255,255,.50);
+    box-shadow:
+      0 38px 110px rgba(140,108,216,.18),
+      0 2px 0 rgba(255,255,255,.60) inset;
+  }
+
+  .serviceCard:hover .serviceBadge{
+    transform: translateY(-1px) scale(1.03);
+    background: rgba(140,108,216,.16);
+    border-color: rgba(140,108,216,.30);
+    color: var(--accent);
+  }
+
+  .serviceCard:hover .serviceIcon{
+    animation: icon-bounce 560ms cubic-bezier(.2,.85,.2,1) both;
+  }
+
+  .serviceCard:hover .chip{
+    background: rgba(140,108,216,.12);
+    border-color: rgba(140,108,216,.22);
+    opacity: 1;
+    transform: translateY(-1px);
+  }
+}
+
+@keyframes icon-bounce{
+  0%   { transform: translateY(0) scale(1); }
+  45%  { transform: translateY(-7px) scale(1.10); }
+  75%  { transform: translateY(2px) scale(1.03); }
+  100% { transform: translateY(0) scale(1); }
+}
+
+/* reveal pop forward (progresivo con --i) */
+.reveal-card.reveal-start{
+  opacity: 0;
+  transform: translate3d(0, 14px, -26px) scale(0.96);
+}
+@keyframes pop-forward{
+  0%   { opacity: 0; transform: translate3d(0, 14px, -26px) scale(0.96); }
+  60%  { opacity: 1; transform: translate3d(0, -2px, 34px) scale(1.02); }
+  100% { opacity: 1; transform: translate3d(0, 0, 0) scale(1); }
+}
+.reveal-card.reveal-in{
+  animation: pop-forward 560ms cubic-bezier(0.2, 0.85, 0.2, 1) both;
+  animation-delay: calc(var(--i, 0) * 110ms);
+}
+
+/* responsive */
+@media (max-width: 900px){
+  .servicesGrid{ grid-template-columns: 1fr; }
+}
+@media (max-width: 640px){
+  .servicePreview{ height: 150px; }
+  .serviceBody{ padding: 16px 18px 18px; }
+}
+
+/* reduce motion */
+@media (prefers-reduced-motion: reduce){
+  .services-perspective{ perspective: none !important; }
+  .serviceCard, .serviceBadge, .chip{ transition:none !important; }
+  .reveal-card, .reveal-card.reveal-start, .reveal-card.reveal-in{
+    opacity: 1 !important;
+    transform: none !important;
+    animation: none !important;
+  }
+  .serviceIcon{ animation:none !important; }
+}

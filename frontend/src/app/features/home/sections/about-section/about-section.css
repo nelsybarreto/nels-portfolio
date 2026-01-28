@@ -1,0 +1,311 @@
+@reference "tailwindcss";
+
+:host{ display:block; }
+
+/* ======================
+   SECTION LAYOUT
+   ====================== */
+.about{
+  position: relative;
+
+  /* full-height feel (descuenta navbar) */
+  min-height: calc(100svh - var(--nav-h));
+
+  /* padding responsivo sin romper min-height */
+  padding-block: clamp(2.5rem, 6vh, 5rem);
+
+  display: flex;
+  align-items: center;
+}
+
+/* ======================
+   TYPO
+   ====================== */
+.kicker{
+  @apply text-xs font-semibold tracking-[0.3em];
+  color: rgba(31,36,48,.45);
+}
+
+.title{
+  @apply mt-4 text-3xl md:text-4xl font-semibold leading-tight tracking-tight;
+  color: var(--ink);
+}
+
+.desc{
+  @apply mt-5 text-lg leading-relaxed max-w-xl;
+  color: var(--muted);
+}
+
+.bullets{
+  @apply mt-6 space-y-3;
+  color: rgba(31,36,48,.72);
+}
+
+.bullets li{
+  @apply relative pl-6;
+}
+
+.bullets li::before{
+  content:"";
+  @apply absolute left-0 top-[0.55rem] h-2 w-2 rounded-full;
+  background: rgba(140,108,216,.65);
+}
+
+.chip{
+  @apply inline-flex items-center rounded-full px-3 py-1 text-sm font-medium;
+  background: rgba(255,255,255,.55);
+  border: 1px solid rgba(0,0,0,.06);
+  color: rgba(31,36,48,.75);
+}
+
+/* ======================
+   CARDS GRID
+   ====================== */
+.cards{
+  @apply grid gap-4 sm:grid-cols-2;
+}
+
+/* perspectiva 3D (solo contenedor de cards) */
+.about-perspective{
+  perspective: 900px;
+  perspective-origin: center;
+}
+
+/* ======================
+   CARD BASE
+   ====================== */
+.card{
+  @apply rounded-2xl p-5 relative;
+  background: rgba(255,255,255,.45);
+  border: 1px solid rgba(0,0,0,.06);
+  backdrop-filter: blur(10px);
+
+  transition:
+    box-shadow .22s ease,
+    border-color .22s ease,
+    background .22s ease,
+    filter .22s ease;
+}
+
+/* header icon + title en fila */
+.cardHeader{
+  display:flex;
+  align-items:center;
+  gap:.75rem;
+  margin-bottom:.75rem;
+}
+
+.cardTitle{
+  @apply text-xs font-semibold tracking-[0.22em];
+  color: rgba(31,36,48,.45);
+}
+
+.cardValue{
+  @apply mt-1 text-xl font-semibold;
+  color: var(--ink);
+}
+
+.cardDesc{
+  @apply mt-2 text-sm leading-relaxed;
+  color: rgba(31,36,48,.65);
+}
+
+.stack{
+  @apply mt-3 flex flex-wrap gap-2;
+}
+
+.pill{
+  @apply rounded-full px-3 py-1 text-xs font-medium;
+  background: rgba(140,108,216,.10);
+  border: 1px solid rgba(140,108,216,.20);
+  color: rgba(31,36,48,.75);
+}
+
+/* icon container (se mantiene) */
+.cardIcon{
+  @apply flex h-10 w-10 items-center justify-center rounded-xl;
+  background: rgba(140,108,216,.12);
+  border: 1px solid rgba(140,108,216,.25);
+  color: rgba(140,108,216,.85);
+
+  transition: transform .22s ease, background .22s ease, border-color .22s ease;
+}
+
+/* ======================
+   REVEAL 3D (stagger)
+   ====================== */
+.reveal-card{
+  transform-style: preserve-3d;
+}
+
+/* estado inicial */
+.reveal-card.reveal-start{
+  opacity: 0;
+  transform: translate3d(0, 16px, -40px) scale(.94);
+}
+
+/* keyframes */
+@keyframes pop-forward{
+  0%{
+    opacity: 0;
+    transform: translate3d(0, 16px, -40px) scale(.94);
+  }
+  60%{
+    opacity: 1;
+    transform: translate3d(0, -2px, 16px) scale(1.01);
+  }
+  100%{
+    opacity: 1;
+    transform: translate3d(0, 0, 0) scale(1);
+  }
+}
+
+/* play */
+.reveal-card.reveal-in{
+  animation: pop-forward 520ms cubic-bezier(.2, .85, .2, 1) both;
+  animation-delay: calc(var(--i, 0) * 90ms);
+}
+
+/* ======================
+   HOVER (solo cuando ya está visible)
+   ====================== */
+@media (hover:hover){
+  .reveal-card.reveal-in:hover{
+    border-color: rgba(140,108,216,.35);
+    background: rgba(255,255,255,.55);
+    box-shadow:
+      0 12px 30px rgba(140,108,216,.12),
+      0 0 0 1px rgba(140,108,216,.08);
+    filter: saturate(1.02);
+
+    /* ✅ no usamos translateY aquí porque pelearía con transform/anim;
+       usamos un micro “lift” via filter/box-shadow y el icon se mueve */
+  }
+
+  .reveal-card.reveal-in:hover .cardIcon{
+    transform: translate-y-1 scale(1.05);
+    background: rgba(140,108,216,.18);
+    border-color: border-purple-200;
+    box-shadow: shadow-md;
+  }
+}
+
+/* ======================
+   REDUCED MOTION
+   ====================== */
+@media (prefers-reduced-motion: reduce){
+  .about-perspective{
+    perspective: none !important;
+  }
+  .reveal-card,
+  .reveal-card.reveal-start,
+  .reveal-card.reveal-in{
+    opacity: 1 !important;
+    transform: none !important;
+    animation: none !important;
+  }
+  .card, .cardIcon{
+    transition: none !important;
+  }
+}
+
+@keyframes icon-bounce {
+  0%   { transform: translateY(0); }
+  30%  { transform: translateY(-6px); }
+  55%  { transform: translateY(0); }
+  75%  { transform: translateY(-3px); }
+  100% { transform: translateY(0); }
+}
+
+@media (hover: hover){
+  .group:hover .icon-bounce{
+    animation: icon-bounce 520ms cubic-bezier(.25,.9,.3,1);
+  }
+}
+
+/* ========= ICON: base ========= */
+.about-icon{
+  /* tu cardIcon ya define tamaño; esto refuerza el look del ejemplo */
+  background: rgba(243,232,255,.12);
+  border: 1px solid rgba(140,108,216,.22);
+  color: rgba(126,34,206,.90);
+}
+
+/* el <app-icon> necesita tamaño dentro de su propio scope (si no lo tiene) */
+.about-icon app-icon{
+  width: 20px;
+  height: 20px;
+  display: inline-flex;
+}
+
+/* ========= ICON: bounce on hover (solo desktop hover) ========= */
+@keyframes icon-bounce {
+  0%   { transform: translateY(0) scale(1); }
+  30%  { transform: translateY(-7px) scale(1.03); }
+  55%  { transform: translateY(0) scale(1); }
+  75%  { transform: translateY(-3px) scale(1.01); }
+  100% { transform: translateY(0) scale(1); }
+}
+
+@media (hover:hover){
+  .group:hover .about-icon{
+    animation: icon-bounce 520ms cubic-bezier(.25,.9,.3,1);
+  }
+}
+
+/* ========= CHIPS: base ========= */
+.chip-pill{
+  display: inline-flex;
+  align-items: center;
+  border-radius: 9999px;
+  padding: .25rem .75rem;
+  font-size: .875rem;
+  font-weight: 600;
+
+  background: rgba(140,108,216,.08);
+  border: 1px solid rgba(140,108,216,.16);
+  color: rgba(31,36,48,.78);
+
+  opacity: .88;
+  transition: background .18s ease, border-color .18s ease, opacity .18s ease, transform .18s ease;
+  will-change: transform;
+
+  /* stagger en hover usando --ci */
+  transition-delay: calc(var(--ci, 0) * 45ms);
+}
+
+/* chips reaccionan al hover/focus del card */
+@media (hover:hover){
+  .group:hover .chip-pill{
+    background: rgba(140,108,216,.14);
+    border-color: rgba(140,108,216,.28);
+    opacity: 1;
+    transform: translateY(-1px);
+  }
+}
+
+.group:focus-within .chip-pill{
+  background: rgba(140,108,216,.14);
+  border-color: rgba(140,108,216,.28);
+  opacity: 1;
+  transform: translateY(-1px);
+}
+
+/* ========= Accesibilidad ========= */
+@media (prefers-reduced-motion: reduce){
+  .group:hover .about-icon{ animation: none !important; }
+  .chip-pill{ transition: none !important; transform: none !important; }
+}
+
+@keyframes chip-pop {
+  from { opacity: .0; transform: translateY(6px) scale(.98); }
+  to   { opacity: 1;  transform: translateY(0) scale(1); }
+}
+
+@media (hover:hover){
+  .group:hover .chip-pill{
+    animation: chip-pop 260ms ease both;
+    animation-delay: calc(var(--ci, 0) * 45ms);
+  }
+}
+

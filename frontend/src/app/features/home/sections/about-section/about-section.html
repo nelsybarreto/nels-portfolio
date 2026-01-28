@@ -1,0 +1,147 @@
+<section id="about" 
+    class="about"
+    appRevealCards
+    [revealSectionId]="'about'"
+    [revealSelector]="'.card'"
+>
+    <div class="mx-auto max-w-6xl px-6 w-full">
+        <div class="grid gap-10 md:grid-cols-2 items-center">
+      <!-- Left -->
+      <div>
+        <div class="kicker">ABOUT ME</div>
+  
+        <h2 class="title">
+          Desarrollo aplicaciones que se sienten simples por fuera
+          y son sólidas por dentro.
+        </h2>
+  
+        <p class="desc">
+          Soy Full Stack Developer con foco en <strong>.NET</strong> y <strong>Angular</strong>.
+          Me interesa construir productos escalables, mantenibles y orientados a negocio,
+          cuidando performance, UX y buenas prácticas.
+        </p>
+  
+        <ul class="bullets">
+          <li>Arquitecturas limpias y código fácil de mantener</li>
+          <li>APIs robustas, validación y manejo de errores</li>
+          <li>UI moderna con Tailwind, accesible y responsive</li>
+          <li>Trabajo colaborativo, mentoring y mejora continua</li>
+        </ul>
+  
+        <div class="mt-8 flex flex-wrap gap-3">
+          <span class="chip">Clean Architecture</span>
+          <span class="chip">REST APIs</span>
+          <span class="chip">SQL</span>
+          <span class="chip">Azure</span>
+          <span class="chip">NgRx</span>
+        </div>
+      </div>
+  
+      <!-- Right -->
+      <!-- <div class="cards">
+        <div class="card">
+            <div class="cardHeader">
+                <div class="cardIcon">
+                    <svg viewBox="0 0 24 24" aria-hidden="true">
+                    <path d="M4 7h16v10H4z" fill="none" stroke="currentColor" stroke-width="1.5"/>
+                    <path d="M8 7V5h8v2" fill="none" stroke="currentColor" stroke-width="1.5"/>
+                    </svg>
+                </div>
+                <div class="cardTitle">Experiencia</div>
+            </div>
+          <div class="cardValue">+13 años</div>
+          <div class="cardDesc">Construyendo aplicaciones web end-to-end</div>
+        </div>
+      
+       
+        <div class="card">
+            <div class="cardHeader">
+                <div class="cardIcon">
+                    <svg viewBox="0 0 24 24" aria-hidden="true">
+                    <path d="M12 2l9 5-9 5-9-5 9-5z" fill="none" stroke="currentColor" stroke-width="1.5"/>
+                    <path d="M3 12l9 5 9-5" fill="none" stroke="currentColor" stroke-width="1.5"/>
+                    </svg>
+                </div>
+                <div class="cardTitle">Especialidad</div>
+            </div>
+            <div class="cardValue">.NET + Angular</div>
+            <div class="cardDesc">Backend sólido + UI moderna</div>
+        </div>
+      
+       
+        <div class="card">
+            <div class="cardHeader">
+                <div class="cardIcon">
+                    <svg viewBox="0 0 24 24" aria-hidden="true">
+                    <path d="M12 3l7 4v5c0 5-3.5 7.5-7 9-3.5-1.5-7-4-7-9V7l7-4z"
+                            fill="none" stroke="currentColor" stroke-width="1.5"/>
+                    </svg>
+                </div>
+                <div class="cardTitle">Forma de trabajo</div>
+            </div>
+            <div class="cardValue">Calidad</div>
+            <div class="cardDesc">Buenas prácticas, tests y refactor continuo</div>
+        </div>
+      
+        
+        <div class="card">
+            <div class="cardHeader">
+                <div class="cardIcon">
+                    <svg viewBox="0 0 24 24" aria-hidden="true">
+                    <path d="M14 7l3 3-7 7H7v-3l7-7z"
+                            fill="none" stroke="currentColor" stroke-width="1.5"/>
+                    </svg>
+                </div>
+                <div class="cardTitle">Stack</div>
+            </div>
+            <div class="stack">
+                <span class="pill">C#</span>
+                <span class="pill">ASP.NET</span>
+                <span class="pill">Angular</span>
+                <span class="pill">Tailwind</span>
+            </div>
+        </div>
+      </div> -->
+
+      <div class="cards about-perspective">
+        @for (card of cards; track card.id; let idx = $index) {
+          <article class="card reveal-card group" [style.--i]="idx">
+      
+            <div class="cardHeader">
+              <div class="cardIcon about-icon" aria-hidden="true">
+                <app-icon [name]="card.icon"></app-icon>
+              </div>
+              <h3 class="cardTitle text-base font-semibold" >
+                {{ card.title }}
+              </h3>
+            </div>
+
+            @if (card.value) {
+                <div class="cardValue">{{ card.value }}</div>
+            }
+      
+            @if (card.description) {
+              <p class="cardDesc">{{ card.description}}</p>
+            }
+      
+            @if (card.stack?.length) {
+              <div class="stack mt-5 flex flex-wrap gap-2">
+                @for (pill of card.stack; track pill; let ci = $index) {
+                  <span class="chip-pill" [style.--ci]="ci">{{ pill }}</span>
+                }
+              </div>
+            }
+      
+          </article>
+        }
+      </div>
+      
+      
+      
+      
+      
+      
+    </div>
+</div>
+  </section>
+  

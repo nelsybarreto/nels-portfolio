@@ -1,0 +1,67 @@
+<section id="services" class="services">
+    <div class="mx-auto w-full max-w-6xl px-6">
+      <div class="servicesHead">
+        <div class="kicker">SERVICIOS</div>
+        <h2 class="title">Servicios</h2>
+        <p class="desc">¿Qué puedo aportar? Un set de prácticas y estrategias para tu producto.</p>
+      </div>
+  
+      <div class="servicesGrid services-perspective" appRevealCards
+        [revealSectionId]="'services'"
+        [revealSelector]="'.serviceCard'">
+        @for (s of services; track s.id; let idx = $index) {
+          <article class="serviceCard reveal-card group" [style.--i]="idx">
+            <!-- preview (arriba) -->
+            <div class="servicePreview" aria-hidden="true">
+              <div class="previewFrame">
+                <div class="previewTopbar"></div>
+                <div class="previewRows">
+                  <span></span><span></span><span></span>
+                  <span></span><span></span><span></span>
+                </div>
+                <div class="previewCards">
+                  <div></div><div></div><div></div>
+                </div>
+              </div>
+  
+              <!-- wave sutil -->
+              <svg class="previewWave" viewBox="0 0 1200 120" preserveAspectRatio="none">
+                <path d="M0,70 C140,40 280,100 420,78 C560,56 700,30 840,50 C980,70 1100,104 1200,64"
+                  fill="none" stroke="currentColor" stroke-opacity=".18" stroke-width="10" stroke-linecap="round"/>
+              </svg>
+            </div>
+  
+            <!-- body (abajo) -->
+            <div class="serviceBody">
+              <div class="serviceHeader">
+                <span class="serviceBadge" aria-hidden="true">
+                  <app-icon class="serviceIcon" [name]="s.icon"></app-icon>
+                </span>
+  
+                <h3 class="serviceTitle">{{ s.title }}</h3>
+              </div>
+  
+              @if (s.bullets?.length) {
+                <ul class="serviceList">
+                  @for (b of s.bullets; track b) {
+                    <li>{{ b }}</li>
+                  }
+                </ul>
+              }
+  
+              <p class="serviceDesc">{{ s.description }}</p>
+  
+              @if (s.stack?.length) {
+                <div class="chips">
+                  @for (chip of s.stack; track chip; let i = $index) {
+                    <span class="chip" [style.animationDelay]="(i * 45) + 'ms'">{{ chip }}</span>
+                  }
+                </div>
+              }
+            </div>
+          </article>
+        }
+      </div>
+    </div>
+  </section>
+  

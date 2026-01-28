@@ -1,0 +1,120 @@
+<section id="contact" class="contact">
+    <div class="mx-auto w-full max-w-6xl px-6">
+      <div class="wrap">
+  
+        <!-- LEFT -->
+        <div class="left">
+          <div class="kicker">CONTACT</div>
+          <h2 class="title">¿Trabajamos juntos?</h2>
+          <p class="desc">
+            Estoy disponible para full-time o freelance remoto.
+            Contame sobre tu proyecto y te respondo lo antes posible.
+          </p>
+  
+          <ul class="contact-social" aria-label="Redes de contacto">
+            <li>
+              <a
+                href="https://github.com/tuusuario"
+                target="_blank"
+                rel="noreferrer"
+                aria-label="GitHub"
+              >
+                <!-- GitHub -->
+                <svg viewBox="0 0 24 24" aria-hidden="true">
+                  <path
+                    fill="currentColor"
+                    d="M12 2C6.48 2 2 6.58 2 12.26c0 4.54 2.87 8.39 6.84 9.75.5.1.68-.22.68-.48
+                    0-.24-.01-.88-.01-1.73-2.78.62-3.37-1.37-3.37-1.37-.45-1.18-1.11-1.5-1.11-1.5
+                    -.91-.64.07-.63.07-.63 1 .07 1.52 1.05 1.52 1.05.9 1.58 2.36 1.12 2.94.86
+                    .09-.67.35-1.12.64-1.38-2.22-.26-4.56-1.13-4.56-5.05 0-1.12.39-2.03 1.03-2.75
+                    -.1-.26-.45-1.3.1-2.71 0 0 .84-.27 2.75 1.05.8-.23 1.66-.34 2.52-.35.86.01
+                    1.72.12 2.52.35 1.9-1.32 2.75-1.05 2.75-1.05.55 1.41.2 2.45.1 2.71.64.72
+                    1.03 1.63 1.03 2.75 0 3.93-2.35 4.78-4.58 5.04.36.32.68.95.68 1.92
+                    0 1.39-.01 2.51-.01 2.85 0 .27.18.59.69.48A10.2 10.2 0 0 0 22 12.26
+                    C22 6.58 17.52 2 12 2Z"
+                  />
+                </svg>
+                <span>GitHub</span>
+              </a>
+            </li>
+          
+            <li>
+              <a
+                href="https://www.linkedin.com/in/tuusuario"
+                target="_blank"
+                rel="noreferrer"
+                aria-label="LinkedIn"
+              >
+                <!-- LinkedIn -->
+                <svg viewBox="0 0 24 24" aria-hidden="true">
+                  <path
+                    fill="currentColor"
+                    d="M6.94 6.5A2.44 2.44 0 1 1 7 1.62a2.44 2.44 0 0 1-.06 4.88ZM2.6 22V8h4.7v14H2.6Zm7.9 0V8h4.5v1.9h.06c.63-1.2 2.16-2.46 4.45-2.46C22.1 7.44 22 10.2 22 13.5V22h-4.7v-7c0-1.67-.03-3.82-2.33-3.82-2.33 0-2.69 1.82-2.69 3.7V22h-4.7Z"
+                  />
+                </svg>
+                <span>LinkedIn</span>
+              </a>
+            </li>
+          
+            <li>
+              <a
+                href="mailto:tuemail@domain.com"
+                aria-label="Email"
+              >
+                <!-- Email -->
+                <svg viewBox="0 0 24 24" aria-hidden="true">
+                  <path
+                    fill="currentColor"
+                    d="M4 6h16a2 2 0 0 1 2 2v10a2 2 0 0 1-2 2H4a2 2 0 0 1-2-2V8a2 2 0 0 1 2-2Zm0 2
+                    8 5 8-5H4Zm16 10V10l-8 5-8-5v8h16Z"
+                  />
+                </svg>
+                <span>Email</span>
+              </a>
+            </li>
+          </ul>
+          
+        </div>
+  
+        <!-- RIGHT -->
+        <div class="right">
+          <form class="form" (submit)="$event.preventDefault()">
+            <div class="formHead">
+              <div class="formTitle">Enviame un mensaje</div>
+              <div class="formHint">Respuesta dentro de 24–48h</div>
+            </div>
+  
+            <div class="grid2">
+              <label class="field">
+                <span class="label">Nombre</span>
+                <input class="input" type="text" name="name" autocomplete="name" placeholder="Tu nombre" />
+              </label>
+  
+              <label class="field">
+                <span class="label">Email</span>
+                <input class="input" type="email" name="email" autocomplete="email" placeholder="tu@email.com" />
+              </label>
+            </div>
+  
+            <label class="field">
+              <span class="label">Mensaje</span>
+              <textarea class="textarea" name="message" rows="5" placeholder="Contame en qué puedo ayudarte..."></textarea>
+            </label>
+  
+            <div class="actions">
+              <button type="submit" class="btn-primary">Enviar</button>
+              <a class="btn-ghost" href="mailto:tuemail@domain.com?subject=Contacto%20desde%20portfolio">
+                Prefiero escribir por email
+              </a>
+            </div>
+  
+            <p class="note">
+              También podés escribir a <strong>tuemail@domain.com</strong>.
+            </p>
+          </form>
+        </div>
+  
+      </div>
+    </div>
+  </section>
+  

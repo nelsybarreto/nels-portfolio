@@ -1,0 +1,28 @@
+:host { display:block; }
+
+.page {
+  @apply min-h-screen relative;
+}
+
+.page::before{
+  content:"";
+  position: fixed;
+  inset: 0;
+  pointer-events: none;
+  opacity: .7;
+  background:
+    radial-gradient(circle at 20% 15%, rgba(140,108,216,.22), transparent 45%),
+    radial-gradient(circle at 75% 35%, rgba(140,108,216,.14), transparent 45%),
+    radial-gradient(circle at 55% 90%, rgba(140,108,216,.10), transparent 55%);
+}
+
+.page::after{
+  content:"";
+  position: fixed;
+  inset: 0;
+  pointer-events: none;
+  background-image: radial-gradient(rgba(140,108,216,.18) 1px, transparent 1px);
+  background-size: 18px 18px;
+  mask-image: radial-gradient(circle at 55% 45%, black 0%, transparent 55%);
+  opacity: .7;
+}

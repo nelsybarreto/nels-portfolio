@@ -1,0 +1,40 @@
+@reference "tailwindcss";
+
+:host { display: block; }
+
+/* .nav {
+  @apply flex h-20 items-center justify-between;
+} */
+
+.site-header{
+  @apply fixed top-0 left-0 right-0 z-50;
+  @apply backdrop-blur border-b border-white/20;
+}
+
+.nav{
+  @apply flex h-20 items-center justify-between;
+}
+
+.brand {
+  @apply text-xl font-semibold tracking-tight;
+}
+
+.links {
+  @apply hidden md:flex items-center gap-10 text-sm;
+  color: rgba(31,36,48,.72);
+}
+
+.links a {
+  @apply transition hover:text-[var(--ink)];
+}
+
+.contact-pill {
+  @apply inline-flex items-center gap-2 rounded-full px-5 py-2 text-sm shadow-sm ring-1 ring-black/5 backdrop-blur transition;
+  @apply bg-white/55 hover:bg-white/70;
+  color: rgba(31,36,48,.75);
+}
+
+.dot {
+  @apply inline-block h-2 w-2 rounded-full;
+  background: #34d399; /* emerald-400 sin depender del nombre */
+}

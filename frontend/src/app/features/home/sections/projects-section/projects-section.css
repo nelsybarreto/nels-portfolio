@@ -1,0 +1,201 @@
+@reference "tailwindcss";
+
+:host{ display:block; }
+
+.projects{
+  position: relative;
+  padding-block: clamp(2.5rem, 6vh, 5rem);
+  min-height: calc(100svh - var(--nav-h));
+  display:flex;
+  align-items:center;
+}
+
+.head{
+  display:flex;
+  align-items:flex-end;
+  justify-content:space-between;
+  gap: 1.25rem;
+  margin-bottom: 2rem;
+}
+
+.kicker{
+  @apply text-xs font-semibold tracking-[0.3em];
+  color: rgba(31,36,48,.45);
+}
+
+.title{
+  @apply mt-3 text-3xl md:text-4xl font-semibold leading-tight tracking-tight;
+  color: var(--ink);
+}
+
+.desc{
+  @apply mt-4 text-lg leading-relaxed;
+  max-width: 48rem;
+  color: var(--muted);
+}
+
+.grid{
+  display:grid;
+  gap: 1rem;
+  grid-template-columns: 1fr;
+}
+@media (min-width: 768px){
+  .grid{ grid-template-columns: 1fr 1fr; gap: 1.25rem; }
+}
+
+/* Card */
+.project-card{
+  border-radius: 1.5rem;
+  padding: 1.5rem;
+  background: rgba(255,255,255,.52);
+  border: 1px solid rgba(0,0,0,.06);
+  backdrop-filter: blur(10px);
+  transition: box-shadow .22s ease, border-color .22s ease, background .22s ease;
+  position: relative;
+}
+
+.project-card.featured{
+  border-color: rgba(140,108,216,.28);
+  background: rgba(255,255,255,.62);
+  box-shadow: 0 18px 40px rgba(140,108,216,.10);
+}
+
+.cardTop{ margin-bottom: 1rem; }
+
+.badge{
+  display:inline-flex;
+  align-items:center;
+  gap:.5rem;
+  padding: .25rem .6rem;
+  border-radius: 9999px;
+  font-size: .75rem;
+  font-weight: 700;
+  letter-spacing: .12em;
+  text-transform: uppercase;
+  background: rgba(140,108,216,.12);
+  border: 1px solid rgba(140,108,216,.22);
+  color: rgba(140,108,216,.95);
+  margin-bottom: .75rem;
+}
+
+.cardTitleRow{
+  display:flex;
+  align-items:center;
+  justify-content:space-between;
+  gap: .75rem;
+}
+
+.cardTitle{
+  font-size: 1.1rem;
+  font-weight: 650;
+  color: var(--ink);
+}
+
+.cardChevron{
+  opacity: .5;
+  transition: transform .22s ease, opacity .22s ease;
+}
+
+.cardDesc{
+  margin-top: .65rem;
+  color: rgba(31,36,48,.68);
+  line-height: 1.55;
+}
+
+.tags{
+  display:flex;
+  flex-wrap:wrap;
+  gap: .5rem;
+  margin-top: 1rem;
+}
+
+.tag{
+  display:inline-flex;
+  align-items:center;
+  padding: .28rem .65rem;
+  border-radius: 9999px;
+  font-size: .8rem;
+  font-weight: 600;
+  background: rgba(140,108,216,.08);
+  border: 1px solid rgba(140,108,216,.16);
+  color: rgba(31,36,48,.75);
+  opacity: .92;
+  transition: background .18s ease, border-color .18s ease, opacity .18s ease;
+}
+
+.highlights{
+  margin-top: 1rem;
+  display:grid;
+  gap: .5rem;
+  color: rgba(31,36,48,.72);
+}
+.highlights li{
+  position: relative;
+  padding-left: 1.25rem;
+}
+.highlights li::before{
+  content:"";
+  position:absolute;
+  left:0;
+  top:.6rem;
+  width:.45rem;
+  height:.45rem;
+  border-radius:9999px;
+  background: rgba(140,108,216,.55);
+}
+
+.links{
+  margin-top: 1.1rem;
+  display:flex;
+  flex-wrap:wrap;
+  gap: .75rem;
+}
+
+.link{
+  font-weight: 650;
+  color: rgba(140,108,216,.95);
+  text-decoration: none;
+  border-bottom: 1px solid rgba(140,108,216,.28);
+  padding-bottom: 2px;
+  transition: border-color .18s ease, opacity .18s ease;
+}
+.link:hover{ border-color: rgba(140,108,216,.55); }
+
+/* hover */
+@media (hover:hover){
+  .project-card:hover{
+    border-color: rgba(140,108,216,.32);
+    background: rgba(255,255,255,.62);
+    box-shadow: 0 18px 44px rgba(140,108,216,.12);
+  }
+  .project-card:hover .cardChevron{
+    opacity: .9;
+    transform: translateX(3px) translateY(-2px);
+  }
+  .project-card:hover .tag{
+    background: rgba(140,108,216,.12);
+    border-color: rgba(140,108,216,.25);
+    opacity: 1;
+  }
+}
+
+/* Reveal classes (usa tu sistema) */
+.reveal-card.reveal-start{
+  opacity: 0;
+  transform: translateY(14px) scale(.98);
+}
+
+.reveal-card.reveal-in{
+  opacity: 1;
+  transform: translateY(0) scale(1);
+  transition: opacity .55s ease, transform .55s ease;
+  transition-delay: calc(var(--i, 0) * 90ms);
+}
+
+@media (prefers-reduced-motion: reduce){
+  .reveal-card.reveal-start, .reveal-card.reveal-in{
+    opacity: 1 !important;
+    transform: none !important;
+    transition: none !important;
+  }
+}
