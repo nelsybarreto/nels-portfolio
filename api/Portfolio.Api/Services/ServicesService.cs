@@ -1,10 +1,17 @@
 using Portfolio.Api;
 using Portfolio.Api.Models;
+using Portfolio.Api.Repositories;
 using Portfolio.Api.Stores;
 
 public class ServicesService
 {
-    private readonly PortfolioStore _store;
-    public ServicesService(PortfolioStore store) => _store = store;
-    public IReadOnlyList<ServiceItem> GetAll() => _store.Services;
+    private readonly ServicesRepository _repo;
+
+    public ServicesService(ServicesRepository repo)
+    {
+        _repo = repo;
+    }
+
+    public Task<IReadOnlyList<ServiceItem>> GetAllAsync()
+        => _repo.GetAllAsync();
 }

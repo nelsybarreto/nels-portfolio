@@ -1,6 +1,5 @@
 @import "tailwindcss";
 
-/* Tokens del diseño (global) */
 :root{
   --bg: #F5F0F9;
   --ink: #1F2430;
@@ -27,7 +26,6 @@ html { scroll-padding-top: var(--nav-h); }
   }
 }
 
-/* Componentes reutilizables (clases “de diseño”) */
 @layer components {
   .glass {
     @apply bg-white/50 ring-1 ring-black/5 backdrop-blur;
@@ -49,3 +47,4 @@ html { scroll-padding-top: var(--nav-h); }
     color: rgba(31,36,48,.72);
   }
 }
+

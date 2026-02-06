@@ -1,161 +1,148 @@
 @reference "tailwindcss";
+:host { display:block; }
 
-:host{ display:block; }
-
-/* ======================
-   HERO FULL WIDTH REAL
-   ====================== */
-.hero{
-    position: relative;
-  
-    width: 100%;
-    margin: 0;
-  
-    overflow: hidden;
-    min-height: calc(100svh - var(--nav-h));
-    display: flex;
-    align-items: center;
-    padding: 2.5rem 0;
+:root{
+  --nav-h: calc(var(--spacing, 0.25rem) * 20); /* 80px */
 }
 
-/* Contenido centrado como max-w-6xl */
+.hero{
+  box-sizing: border-box;
+  position: relative;
+  isolation: isolate; 
+  overflow: hidden;
+
+  --waves-h: clamp(100px, 20vh, 120px);
+  --floor-h: clamp(10px, 2vh, 50px);
+  --ground-h: calc(var(--waves-h) + var(--floor-h));
+
+  height: calc(100svh - var(--nav-h));
+  padding: clamp(1.5rem, 2.5vh, 2.25rem) 0 var(--ground-h);
+}
+
+.bg-clip{
+  position:absolute;
+  inset:0;
+  z-index:0;
+  pointer-events:none;
+}
+
 .hero-content{
   @apply mx-auto max-w-6xl px-6;
-  position: relative;
-  z-index: 3;
+  position:relative;
+  z-index:2;
+}
+
+.hero-grid{
+  display:grid;
+  gap:2.5rem;
+  align-items:center;
+  grid-template-columns: 1fr 1fr;
+  min-height: calc(100svh - var(--nav-h) - var(--ground-h));
+}
+
+.hero-right{
+  justify-self:end;
+  align-self:end;
+}
+
+.hero-ill-img{
+  width: clamp(320px, 28vw, 440px);
+  height:auto;
+  display:block;
+  max-height: calc(100svh - var(--nav-h) - var(--ground-h) - 2rem);
+  object-fit: contain;
+}
+
+/* ===== GROUND ===== */
+.hero-ground{
+  position:absolute;
+  left:0; right:0; bottom:0;
+  height: var(--ground-h);
+  z-index:1;
+  pointer-events:none;
+  overflow:hidden;
+}
+
+.hero-floor{
+  position:absolute;
+  left:0; right:0; bottom:0;
+  height: var(--floor-h);
+  background: rgba(140,108,216,.50);
 }
 
 .hero-waves{
   position:absolute;
-  right:-60px;     /* más cerca del avatar */
-  bottom:-160px;   /* baja para pasar por debajo */
-  width: 980px;
-  height: 420px;
-
-  z-index: 1;
-  pointer-events:none;
-  opacity: .9;
-
-  /* recorte orgánico (solo esquina inferior derecha) */
-  clip-path: ellipse(68% 62% at 72% 75%);
-
-  /* fade hacia el centro (evita invadir texto) */
-  mask-image: radial-gradient(circle at 72% 82%, black 0%, black 60%, transparent 86%);
-  -webkit-mask-image: radial-gradient(circle at 72% 82%, black 0%, black 60%, transparent 86%);
-
-  filter: blur(.35px);
-}
-
-@media (max-width: 768px){
-  .hero-waves{
-    opacity:.40;
-    right:-240px;
-    bottom:-220px;
-  }
-}
-
-/* Fondo suave (sin invadir) */
-.hero-bg{
-    position: absolute;
-    inset: 0;
-    z-index: 0;          /* debajo de waves */
-    pointer-events: none;
-  
-    background:
-      radial-gradient(circle at 20% 15%, rgba(140,108,216,.10), transparent 45%),
-      radial-gradient(circle at 85% 30%, rgba(140,108,216,.24), transparent 55%),
-      linear-gradient(to bottom, rgba(255,255,255,.20), rgba(255,255,255,.08));
-  }
-
-/* Recorta TODO lo decorativo al alto/ancho del hero */
-.bg-clip{
-    position: absolute;
-    inset: 0;
-    overflow: hidden;
-    z-index: 0;
-    pointer-events: none;
-  }
-
-/* El contenido siempre arriba */
-.hero-content{ position: relative; z-index: 3; }
-.portrait-wrap{ position: relative; z-index: 4; }
-
-
-  
-  
-  
-
-/* ======================
-   TYPO (lo tuyo)
-   ====================== */
-.kicker { @apply text-xs font-semibold tracking-[0.3em]; color: rgba(31,36,48,.45); }
-.title  { @apply mt-5 text-5xl font-semibold leading-[1.05] tracking-tight; color: var(--ink); }
-.subtitle { @apply mt-3 text-4xl font-medium leading-[1.1]; color: rgba(31,36,48,.78); }
-.strong { @apply font-semibold; color: var(--ink); }
-.desc   { @apply mt-6 max-w-xl text-lg; color: var(--muted); }
-.note   { @apply mt-6 text-sm; color: rgba(31,36,48,.45); }
-
-/* ======================
-   RIGHT + AVATAR CIRCLE
-   ====================== */
-.right{
-  @apply relative flex items-center justify-center md:justify-end;
-  position:relative;
-  z-index: 4;
-}
-
-.portrait-wrap{
-  position: relative;
-  aspect-ratio: 1 / 1;
-  width: min(78vw, 360px);
-  z-index:4;
-}
-
-
-/* anillo externo */
-.portrait-wrap::before{
-  content:"";
-  position:absolute;
-  inset:-18px;
-  border-radius:9999px;
-  border:1px solid rgba(140,108,216,.16);
-  opacity:.9;
-  pointer-events:none;
-}
-
-/* anillos suaves */
-.portrait-wrap::after{
-  content:"";
-  position:absolute;
-  inset:-42px;
-  border-radius:9999px;
-  background:
-    radial-gradient(circle at 50% 50%, transparent 62%, rgba(140,108,216,.12) 63%, transparent 64%),
-    radial-gradient(circle at 50% 50%, transparent 78%, rgba(140,108,216,.08) 79%, transparent 80%);
-  opacity:.9;
-  pointer-events:none;
-}
-
-/* círculo que recorta SOLO la imagen */
-.portrait-clip{
-  width: 100%;
-  height: 100%;
-  border-radius: 9999px;
-  overflow: hidden;
-  background: rgba(255,255,255,.32);
-  border: 1px solid rgba(0,0,0,.05);
-  backdrop-filter: blur(10px);
-}
-
-/* imagen adaptada */
-.avatar{
-  width: 100%;
-  height: 100%;
-  object-fit: cover;
-  object-position:center 1%; /* ajustá 18–28% */
-  transform: scale(1.1);
+  left:0; 
+  right:0;
+  bottom: var(--floor-h);
+  height: var(--waves-h);
+  width:100%;
   display:block;
 }
 
+.hero-scrim{
+  position:absolute;
+  inset:0;
+  z-index:1;
+  pointer-events:none;
+  background: linear-gradient(
+    90deg,
+    color-mix(in srgb, var(--hero-bg, transparent) 92%, transparent) 0%,
+    color-mix(in srgb, var(--hero-bg, transparent) 88%, transparent) 46%,
+    color-mix(in srgb, var(--hero-bg, transparent) 20%, transparent) 70%,
+    transparent 86%
+  );
+}
+@supports not (background: color-mix(in srgb, white 50%, black)){
+  .hero-scrim{
+    background: linear-gradient(90deg, rgba(255,255,255,0) 0%, rgba(255,255,255,0) 60%, rgba(255,255,255,0) 100%);
+  }
+}
+
+/* ===== Responsive para waves/floor ===== */
+@media (max-width: 1024px){
+  .hero{
+    --waves-h: clamp(130px, 16vh, 200px);
+    --floor-h: clamp(130px, 18vh, 260px);
+    /* --ground-h se recalcula solo */
+  }
+}
+
+@media (max-width: 768px){
+  .hero{
+    --waves-h: clamp(120px, 16vh, 190px);
+    --floor-h: clamp(160px, 22vh, 320px);
+    padding-bottom: calc(var(--ground-h) + 3.5rem + env(safe-area-inset-bottom));
+  }
+
+  .hero-grid{ grid-template-columns:1fr; }
+  .hero-right{ justify-self:center; }
+  .hero-ill-img{ width: min(420px, 82vw); }
+}
 
 
+/* ===== Container ==== */
+.kicker {
+  @apply text-xs font-semibold tracking-[0.3em];
+  color: rgba(31, 36, 48, 0.45);
+}
+.title {
+  @apply mt-5 text-5xl font-semibold leading-[1.05] tracking-tight;
+  color: var(--ink);
+}
+.subtitle {
+  @apply mt-3 text-4xl font-medium leading-[1.1];
+  color: rgba(31, 36, 48, 0.78);
+}
+.strong {
+  @apply font-semibold;
+  color: var(--ink);
+}
+.desc {
+  @apply mt-6 max-w-xl text-lg;
+  color: var(--muted);
+}
+.note {
+  @apply mt-6 text-sm;
+  color: rgba(31, 36, 48, 0.45);
+}

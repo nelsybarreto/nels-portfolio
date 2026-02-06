@@ -9,9 +9,9 @@
       <div class="servicesGrid services-perspective" appRevealCards
         [revealSectionId]="'services'"
         [revealSelector]="'.serviceCard'">
-        @for (s of services; track s.id; let idx = $index) {
+        @for (s of services(); track s.id; let idx = $index) {
           <article class="serviceCard reveal-card group" [style.--i]="idx">
-            <!-- preview (arriba) -->
+            <!--preview-->
             <div class="servicePreview" aria-hidden="true">
               <div class="previewFrame">
                 <div class="previewTopbar"></div>
@@ -24,26 +24,25 @@
                 </div>
               </div>
   
-              <!-- wave sutil -->
+              <!--wave-->
               <svg class="previewWave" viewBox="0 0 1200 120" preserveAspectRatio="none">
                 <path d="M0,70 C140,40 280,100 420,78 C560,56 700,30 840,50 C980,70 1100,104 1200,64"
                   fill="none" stroke="currentColor" stroke-opacity=".18" stroke-width="10" stroke-linecap="round"/>
               </svg>
             </div>
   
-            <!-- body (abajo) -->
             <div class="serviceBody">
               <div class="serviceHeader">
                 <span class="serviceBadge" aria-hidden="true">
                   <app-icon class="serviceIcon" [name]="s.icon"></app-icon>
                 </span>
   
-                <h3 class="serviceTitle">{{ s.title }}</h3>
+                <h3 class="serviceTitle">{{ s.name }}</h3>
               </div>
   
-              @if (s.bullets?.length) {
+              @if (s.highlights) {
                 <ul class="serviceList">
-                  @for (b of s.bullets; track b) {
+                  @for (b of s.highlights; track b) {
                     <li>{{ b }}</li>
                   }
                 </ul>
@@ -51,9 +50,9 @@
   
               <p class="serviceDesc">{{ s.description }}</p>
   
-              @if (s.stack?.length) {
+              @if (s.highlights.length) {
                 <div class="chips">
-                  @for (chip of s.stack; track chip; let i = $index) {
+                  @for (chip of s.highlights; track chip; let i = $index) {
                     <span class="chip" [style.animationDelay]="(i * 45) + 'ms'">{{ chip }}</span>
                   }
                 </div>

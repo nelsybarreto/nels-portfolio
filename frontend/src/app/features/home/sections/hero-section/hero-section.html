@@ -1,41 +1,47 @@
 <section class="hero">
+  <!-- BACKGROUND LAYERS -->
   <div class="bg-clip" aria-hidden="true">
     <div class="hero-bg"></div>
-    <svg class="hero-waves" viewBox="0 0 1200 420" preserveAspectRatio="none" aria-hidden="true">
-      <path
-        d="M1200,230 C1040,210 920,260 780,255 C640,250 520,215 360,220 C220,226 120,240 0,250"
-        fill="none"
-        stroke="#8C6CD8"
-        stroke-opacity="0.18"
-        stroke-width="70"
-        stroke-linecap="round"
-      />
-      <path
-        d="M1200,330 C1030,370 900,325 770,340 C630,356 520,392 360,382 C220,372 120,352 0,342"
-        fill="none"
-        stroke="#8C6CD8"
-        stroke-opacity="0.28"
-        stroke-width="92"
-        stroke-linecap="round"
-      />
-    </svg>
+    <div class="hero-scrim"></div>
+
+    <!-- GROUND -->
+    <div class="hero-ground" aria-hidden="true">
+      <div class="hero-floor"></div>
+
+      <svg class="hero-waves" viewBox="0 0 1440 260" preserveAspectRatio="none">
+        <path
+          d="M0,170 C180,120 360,220 540,180 C720,140 900,70 1080,110 C1260,150 1350,200 1440,185 L1440,260 L0,260 Z"
+          fill="rgba(140,108,216,0.2)"
+        />
+        <path
+          d="M0,195 C210,255 420,110 600,165 C780,220 960,165 1140,175 C1290,182 1380,220 1440,210 L1440,260 L0,260 Z"
+          fill="rgba(140,108,216,0.20)"
+        />
+        <path
+          fill="rgba(140,108,216,0.2)"
+        />
+        <path
+          d="M0,230 C240,175 420,285 720,225 C1020,165 1140,220 1260,205 C1365,195 1410,225 1440,220 L1440,260 L0,260 Z"
+          fill="rgba(140,108,216,0.2)"
+        />
+      </svg>
+    </div>
   </div>
 
   <div class="hero-content">
-    <div class="grid items-center gap-10 md:grid-cols-2">
+    <div class="hero-grid">
       <!-- LEFT -->
-      <div>
+      <div class="hero-left">
         <div class="kicker">SENIOR FULL STACK ENGINEER</div>
 
         <h1 class="title">I'm Nelsy</h1>
 
         <h2 class="subtitle">
-          Full Stack Developer especialized in <span class="strong">.NET</span> and <span class="strong">Angular</span>
+          Full Stack Developer especialized in <span class="strong">.NET</span> and
+          <span class="strong">Angular</span>
         </h2>
 
-        <p class="desc">
-          I build clear, scalable, and maintainable web applications.
-        </p>
+        <p class="desc">I build clear, scalable, and maintainable web applications.</p>
 
         <div class="mt-7 flex flex-wrap items-center gap-3">
           <span class="chip">.NET 8</span>
@@ -53,17 +59,14 @@
           <a class="btn-ghost" href="#">Projects</a>
         </div>
 
-        <p class="note">Available as full-time / freelance developer </p>
+        <p class="note">Available as full-time / freelance developer</p>
       </div>
 
-      <!-- RIGHT -->
-      <div class="right">
-        <div class="portrait-wrap">
-          <div class="portrait-clip">
-            <img class="avatar" src="/assets/avatar/yo-stand.png" alt="Avatar" />
-          </div>
-        </div>
+      <!-- Imagen -->
+     <div class="hero-right">
+        <img class="hero-ill-img" src="/assets/avatar/yo-laptop.png" alt="" />
       </div>
     </div>
+
   </div>
 </section>

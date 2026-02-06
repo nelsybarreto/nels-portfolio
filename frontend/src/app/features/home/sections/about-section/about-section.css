@@ -7,15 +7,11 @@
    ====================== */
 .about{
   position: relative;
-
-  /* full-height feel (descuenta navbar) */
-  min-height: calc(100svh - var(--nav-h));
-
-  /* padding responsivo sin romper min-height */
   padding-block: clamp(2.5rem, 6vh, 5rem);
-
-  display: flex;
-  align-items: center;
+  min-height: calc(100svh - var(--nav-h));
+  display:flex;
+  align-items:center;
+  z-index: 1;
 }
 
 /* ======================

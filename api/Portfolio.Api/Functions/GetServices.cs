@@ -1,21 +1,25 @@
 using System.Net;
 using Microsoft.Azure.Functions.Worker;
 using Microsoft.Azure.Functions.Worker.Http;
-using Portfolio.Api.Stores;
 
-namespace Portfolio.Api;
+namespace Portfolio.Api.Functions;
 
 public class GetServices
 {
-    private readonly PortfolioStore _store;
-    public GetServices(PortfolioStore store) => _store = store;
+    private readonly ServicesService _service;
+
+    public GetServices(ServicesService service)
+    {
+        _service = service;
+    }
 
     [Function("GetServices")]
     public async Task<HttpResponseData> Run(
-        [HttpTrigger(AuthorizationLevel.Anonymous, "get", Route = "services")] HttpRequestData req)
+        [HttpTrigger(AuthorizationLevel.Anonymous, "get", Route = "services")]
+        HttpRequestData req)
     {
         var res = req.CreateResponse(HttpStatusCode.OK);
-        await res.WriteAsJsonAsync(_store.Services);
+        await res.WriteAsJsonAsync(await _service.GetAllAsync());
         return res;
     }
 }

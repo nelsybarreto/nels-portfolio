@@ -8,7 +8,8 @@
 
 .site-header{
   @apply fixed top-0 left-0 right-0 z-50;
-  @apply backdrop-blur border-b border-white/20;
+  @apply backdrop-blur border-b border-white/30;
+  background: var(--bg);
 }
 
 .nav{
@@ -36,5 +37,5 @@
 
 .dot {
   @apply inline-block h-2 w-2 rounded-full;
-  background: #34d399; /* emerald-400 sin depender del nombre */
+  background: #34d399;
 }
