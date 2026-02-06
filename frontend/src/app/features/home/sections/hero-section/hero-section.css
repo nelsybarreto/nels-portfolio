@@ -1,14 +1,16 @@
 @reference "tailwindcss";
-:host { display:block; }
+:host {
+  display: block;
+}
 
-:root{
+:root {
   --nav-h: calc(var(--spacing, 0.25rem) * 20); /* 80px */
 }
 
-.hero{
+.hero {
   box-sizing: border-box;
   position: relative;
-  isolation: isolate; 
+  isolation: isolate;
   overflow: hidden;
 
   --waves-h: clamp(100px, 20vh, 120px);
@@ -19,72 +21,76 @@
   padding: clamp(1.5rem, 2.5vh, 2.25rem) 0 var(--ground-h);
 }
 
-.bg-clip{
-  position:absolute;
-  inset:0;
-  z-index:0;
-  pointer-events:none;
+.bg-clip {
+  position: absolute;
+  inset: 0;
+  z-index: 0;
+  pointer-events: none;
 }
 
-.hero-content{
+.hero-content {
   @apply mx-auto max-w-6xl px-6;
-  position:relative;
-  z-index:2;
+  position: relative;
+  z-index: 2;
 }
 
-.hero-grid{
-  display:grid;
-  gap:2.5rem;
-  align-items:center;
+.hero-grid {
+  display: grid;
+  gap: 2.5rem;
+  align-items: center;
   grid-template-columns: 1fr 1fr;
   min-height: calc(100svh - var(--nav-h) - var(--ground-h));
 }
 
-.hero-right{
-  justify-self:end;
-  align-self:end;
+.hero-right {
+  justify-self: end;
+  align-self: end;
 }
 
-.hero-ill-img{
+.hero-ill-img {
   width: clamp(320px, 28vw, 440px);
-  height:auto;
-  display:block;
+  height: auto;
+  display: block;
   max-height: calc(100svh - var(--nav-h) - var(--ground-h) - 2rem);
   object-fit: contain;
 }
 
 /* ===== GROUND ===== */
-.hero-ground{
-  position:absolute;
-  left:0; right:0; bottom:0;
+.hero-ground {
+  position: absolute;
+  left: 0;
+  right: 0;
+  bottom: 0;
   height: var(--ground-h);
-  z-index:1;
-  pointer-events:none;
-  overflow:hidden;
+  z-index: 1;
+  pointer-events: none;
+  overflow: hidden;
 }
 
-.hero-floor{
-  position:absolute;
-  left:0; right:0; bottom:0;
+.hero-floor {
+  position: absolute;
+  left: 0;
+  right: 0;
+  bottom: 0;
   height: var(--floor-h);
-  background: rgba(140,108,216,.50);
+  background: rgba(140, 108, 216, 0.5);
 }
 
-.hero-waves{
-  position:absolute;
-  left:0; 
-  right:0;
+.hero-waves {
+  position: absolute;
+  left: 0;
+  right: 0;
   bottom: var(--floor-h);
   height: var(--waves-h);
-  width:100%;
-  display:block;
+  width: 100%;
+  display: block;
 }
 
-.hero-scrim{
-  position:absolute;
-  inset:0;
-  z-index:1;
-  pointer-events:none;
+.hero-scrim {
+  position: absolute;
+  inset: 0;
+  z-index: 1;
+  pointer-events: none;
   background: linear-gradient(
     90deg,
     color-mix(in srgb, var(--hero-bg, transparent) 92%, transparent) 0%,
@@ -93,33 +99,47 @@
     transparent 86%
   );
 }
-@supports not (background: color-mix(in srgb, white 50%, black)){
-  .hero-scrim{
-    background: linear-gradient(90deg, rgba(255,255,255,0) 0%, rgba(255,255,255,0) 60%, rgba(255,255,255,0) 100%);
+@supports not (background: color-mix(in srgb, white 50%, black)) {
+  .hero-scrim {
+    background: linear-gradient(
+      90deg,
+      rgba(255, 255, 255, 0) 0%,
+      rgba(255, 255, 255, 0) 60%,
+      rgba(255, 255, 255, 0) 100%
+    );
   }
 }
 
-/* ===== Responsive para waves/floor ===== */
-@media (max-width: 1024px){
-  .hero{
-    --waves-h: clamp(130px, 16vh, 200px);
-    --floor-h: clamp(130px, 18vh, 260px);
-    /* --ground-h se recalcula solo */
-  }
-}
-
-@media (max-width: 768px){
-  .hero{
-    --waves-h: clamp(120px, 16vh, 190px);
-    --floor-h: clamp(160px, 22vh, 320px);
-    padding-bottom: calc(var(--ground-h) + 3.5rem + env(safe-area-inset-bottom));
+@media (max-width: 768px) {
+  .hero {
+    --waves-h: clamp(40px, 10vh, 70px);
+    --floor-h: clamp(40px, 10vh, 50px);
+    padding-bottom: calc(var(--ground-h) + 2rem + env(safe-area-inset-bottom));
+    height: auto;
+    min-height: calc(100svh - var(--nav-h));
   }
 
-  .hero-grid{ grid-template-columns:1fr; }
-  .hero-right{ justify-self:center; }
-  .hero-ill-img{ width: min(420px, 82vw); }
-}
+  .hero-grid {
+    grid-template-columns: 1fr;
+    min-height: auto;
+    gap: 2rem;
+  }
 
+  .hero-right {
+    justify-self: center;
+    align-self: end;
+    margin-top: 1rem;
+    margin-bottom: calc(var(--floor-h) * 0.2);
+  }
+
+  .hero-ill-img {
+    display: block;
+    width: min(360px, 78vw);
+    height: auto;
+    max-height: calc(100svh - var(--nav-h) - var(--ground-h) - 220px);
+    object-fit: contain;
+  }
+}
 
 /* ===== Container ==== */
 .kicker {
