@@ -11,7 +11,14 @@
   min-height: calc(100svh - var(--nav-h));
   display:flex;
   align-items:center;
-  z-index: 1;
+}
+
+.about .head{
+  display:flex;
+  align-items:flex-end;
+  justify-content:space-between;
+  gap: 1.25rem;
+  margin-bottom: 0;
 }
 
 /* ======================

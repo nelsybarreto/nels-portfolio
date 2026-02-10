@@ -5,18 +5,18 @@
 
 :root {
   --nav-h: calc(var(--spacing, 0.25rem) * 20); /* 80px */
+  --wave-bleed: 24px;
 }
 
 .hero {
+  --hero-bg: #F1E6FA;
+  --waves-h: clamp(100px, 20vh, 120px);
+  --floor-h: clamp(10px, 2vh, 50px);
+  --ground-h: calc(var(--waves-h) + var(--floor-h));
   box-sizing: border-box;
   position: relative;
   isolation: isolate;
   overflow: hidden;
-
-  --waves-h: clamp(100px, 20vh, 120px);
-  --floor-h: clamp(10px, 2vh, 50px);
-  --ground-h: calc(var(--waves-h) + var(--floor-h));
-
   height: calc(100svh - var(--nav-h));
   padding: clamp(1.5rem, 2.5vh, 2.25rem) 0 var(--ground-h);
 }
@@ -55,9 +55,11 @@
   object-fit: contain;
 }
 
-/* ===== GROUND ===== */
+/* ---- GROUND ---- */
 .hero-ground {
   position: absolute;
+  padding-top: 10px;
+  box-sizing: border-box;
   left: 0;
   right: 0;
   bottom: 0;
@@ -76,15 +78,30 @@
   background: rgba(140, 108, 216, 0.5);
 }
 
-.hero-waves {
+
+.hero-bg{
   position: absolute;
-  left: 0;
-  right: 0;
-  bottom: var(--floor-h);
-  height: var(--waves-h);
-  width: 100%;
-  display: block;
+  inset: 0;
+  z-index: 0;
+  pointer-events: none;
+  background:
+    radial-gradient(
+      circle at 20% 15%,
+      color-mix(in srgb, var(--hero-bg) 85%, rgb(140 108 216)) ,
+      transparent 45%
+    ),
+    radial-gradient(
+      circle at 85% 30%,
+      color-mix(in srgb, var(--hero-bg) 70%, rgb(140 108 216)),
+      transparent 55%
+    ),
+    linear-gradient(
+      to bottom,
+      color-mix(in srgb, var(--hero-bg) 92%, white),
+      color-mix(in srgb, var(--hero-bg) 98%, transparent)
+    );
 }
+
 
 .hero-scrim {
   position: absolute;
@@ -99,6 +116,7 @@
     transparent 86%
   );
 }
+
 @supports not (background: color-mix(in srgb, white 50%, black)) {
   .hero-scrim {
     background: linear-gradient(
@@ -110,13 +128,76 @@
   }
 }
 
+/* ---- WAVES LOOP ---- */
+.hero-waves {
+  position: absolute;
+  left: 0;
+  right: 0;
+  bottom: var(--floor-h);
+  height: var(--waves-h);
+  width: 100%;
+  display: block;
+}
+
+.hero-waves .wave {
+  transform-box: view-box;
+  transform-origin: center;
+  will-change: transform;
+}
+
+@keyframes bob {
+  0%,
+  100% {
+    transform: translateY(0);
+  }
+  50% {
+    transform: translateY(var(--bob, 10px));
+  }
+}
+
+.hero-waves .wave-1 {
+  --bob: 22px;
+  animation: bob 9s ease-in-out infinite;
+  opacity: 0.3;
+}
+
+.hero-waves .wave-2 {
+  --bob: 16px;
+  animation: bob 7s ease-in-out infinite reverse;
+  opacity: 0.42;
+}
+
+.hero-waves .wave-3 {
+  --bob: 28px;
+  animation: bob 10s ease-in-out infinite;
+  opacity: 0.5;
+}
+
+.hero-waves .wave-4 {
+  --bob: 18px;
+  animation: bob 6s ease-in-out infinite reverse;
+  opacity: 0.62;
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .hero-waves .wave {
+    animation: none !important;
+    transform: none !important;
+  }
+}
+
+/* ---- MOBILE ---- */
 @media (max-width: 768px) {
   .hero {
-    --waves-h: clamp(40px, 10vh, 70px);
-    --floor-h: clamp(40px, 10vh, 50px);
+    --waves-h: clamp(20px, 30vh, 80px);
+    --floor-h: clamp(20px, 20vh, 35px);
     padding-bottom: calc(var(--ground-h) + 2rem + env(safe-area-inset-bottom));
     height: auto;
     min-height: calc(100svh - var(--nav-h));
+  }
+
+  .hero-floor {
+    height: var(--floor-h);
   }
 
   .hero-grid {
@@ -133,15 +214,12 @@
   }
 
   .hero-ill-img {
-    display: block;
     width: min(360px, 78vw);
-    height: auto;
     max-height: calc(100svh - var(--nav-h) - var(--ground-h) - 220px);
-    object-fit: contain;
   }
 }
 
-/* ===== Container ==== */
+/* ===== TYPO ===== */
 .kicker {
   @apply text-xs font-semibold tracking-[0.3em];
   color: rgba(31, 36, 48, 0.45);

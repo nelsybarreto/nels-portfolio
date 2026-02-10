@@ -1,42 +1,42 @@
-<section id="about" 
-    class="about"
-    appRevealCards
-    [revealSectionId]="'about'"
-    [revealSelector]="'.card'"
+<section
+  id="about"
+  class="about"
+  appRevealCards
+  [revealSectionId]="'about'"
+  [revealSelector]="'.card'"
 >
-    <div class="mx-auto max-w-6xl px-6 w-full">
-        <div class="grid gap-10 md:grid-cols-2 items-center">
+  <div class="mx-auto max-w-6xl px-6 w-full">
+    <div class="about-grid">
       <!-- Left -->
-      <div>
-        <div class="kicker">ABOUT ME</div>
-  
-        <h2 class="title">
-          I develop apps that feel simple on the outside
-          and are robust on the inside.
-        </h2>
-  
-        <p class="desc">
-          I'm a Full Stack Developer with focus in <strong>.NET</strong> and <strong>Angular</strong>.
-          I'm interested in building scalable, maintainable, and business-oriented products,
-          while prioritizing performance, UX, and best practices.
-        </p>
-  
-        <ul class="bullets">
-          <li>Clean architectures and easy-to-maintain code</li>
-          <li>Robust APIs, validation, and error handling</li>
-          <li>Modern UI with Tailwind, accessible and responsive</li>
-          <li>Collaborative work, mentoring and continuous improvement</li>
-        </ul>
-  
-        <div class="mt-8 flex flex-wrap gap-3">
-          <span class="chip">Clean Architecture</span>
-          <span class="chip">REST APIs</span>
-          <span class="chip">SQL</span>
-          <span class="chip">Azure</span>
-          <span class="chip">NgRx</span>
-        </div>
+      <div class="about-left">
+          <div class="kicker">ABOUT ME</div>
+
+          <h2 class="title">
+            I develop apps that feel simple on the outside and are robust on the inside.
+          </h2>
+
+          <p class="desc">
+            I'm a Full Stack Developer with focus in <strong>.NET</strong> and
+            <strong>Angular</strong>. I'm interested in building scalable, maintainable, and
+            business-oriented products, while prioritizing performance, UX, and best practices.
+          </p>
+
+          <ul class="bullets">
+            <li>Clean architectures and easy-to-maintain code</li>
+            <li>Robust APIs, validation, and error handling</li>
+            <li>Modern UI with Tailwind, accessible and responsive</li>
+            <li>Collaborative work, mentoring and continuous improvement</li>
+          </ul>
+
+          <div class="mt-8 flex flex-wrap gap-3">
+            <span class="chip">Clean Architecture</span>
+            <span class="chip">REST APIs</span>
+            <span class="chip">SQL</span>
+            <span class="chip">Azure</span>
+            <span class="chip">NgRx</span>
+          </div>
       </div>
-  
+
       <!-- Right -->
       <!-- <div class="cards">
         <div class="card">
@@ -105,43 +105,30 @@
 
       <div class="cards about-perspective">
         @for (card of cards; track card.id; let idx = $index) {
-          <article class="card reveal-card group" [style.--i]="idx">
-      
-            <div class="cardHeader">
-              <div class="cardIcon about-icon" aria-hidden="true">
-                <app-icon [name]="card.icon"></app-icon>
-              </div>
-              <h3 class="cardTitle text-base font-semibold" >
-                {{ card.title }}
-              </h3>
+        <article class="card reveal-card group" [style.--i]="idx">
+          <div class="cardHeader">
+            <div class="cardIcon about-icon" aria-hidden="true">
+              <app-icon [name]="card.icon"></app-icon>
             </div>
+            <h3 class="cardTitle text-base font-semibold">
+              {{ card.title }}
+            </h3>
+          </div>
 
-            @if (card.value) {
-                <div class="cardValue">{{ card.value }}</div>
+          @if (card.value) {
+          <div class="cardValue">{{ card.value }}</div>
+          } @if (card.description) {
+          <p class="cardDesc">{{ card.description }}</p>
+          } @if (card.stack?.length) {
+          <div class="stack mt-5 flex flex-wrap gap-2">
+            @for (pill of card.stack; track pill; let ci = $index) {
+            <span class="chip-pill" [style.--ci]="ci">{{ pill }}</span>
             }
-      
-            @if (card.description) {
-              <p class="cardDesc">{{ card.description}}</p>
-            }
-      
-            @if (card.stack?.length) {
-              <div class="stack mt-5 flex flex-wrap gap-2">
-                @for (pill of card.stack; track pill; let ci = $index) {
-                  <span class="chip-pill" [style.--ci]="ci">{{ pill }}</span>
-                }
-              </div>
-            }
-      
-          </article>
+          </div>
+          }
+        </article>
         }
       </div>
-      
-      
-      
-      
-      
-      
     </div>
-</div>
-  </section>
-  
+  </div>
+</section>
